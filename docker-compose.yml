@@ -1,0 +1,28 @@
+services:
+  app_db:
+    image: postgres:17
+    container_name: app_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: app_password
+      POSTGRES_DB: app_db
+    volumes:
+      - postgres_app_data:/var/lib/postgresql/data
+
+  test_db:
+    image: postgres:17
+    container_name: test_db
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_password
+      POSTGRES_DB: test_db
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_app_data:
+  postgres_test_data:
